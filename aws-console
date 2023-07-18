@@ -2,3 +2,4 @@ sudo apt update
 sudo apt install awscli
 aws --version
 
+aws configure
