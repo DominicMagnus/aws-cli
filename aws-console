@@ -10,3 +10,6 @@ aws iam create-user --cli-input-json '{
   "UserName": "testuser7",
   "PermissionsBoundary": "arn:aws:iam::aws:policy/AdministratorAccess"
 }'
+
+#get EC2 instances
+aws ec2 describe-instances --query 'Reservations[*].Instances[*].{ID:InstanceId, Name:Tags[?Key==`Name`].Value | [0], Status:State.Name}' --output table
