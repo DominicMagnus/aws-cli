@@ -3,3 +3,10 @@ sudo apt install awscli
 aws --version
 
 aws configure
+
+
+# create user and add policy
+aws iam create-user --cli-input-json '{
+  "UserName": "testuser7",
+  "PermissionsBoundary": "arn:aws:iam::aws:policy/AdministratorAccess"
+}'
