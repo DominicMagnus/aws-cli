@@ -4,6 +4,18 @@ aws --version
 
 aws configure
 
+#####################
+AIM
+#####################
+
+# List users:
+aws iam list-users 
+aws iam list-users --output text
+aws iam list-users --output table
+aws iam list-users --output yaml
+
+# Create blank user:
+aws iam create-user --user-name testuser3
 
 # create user and add policy
 aws iam create-user --cli-input-json '{
@@ -11,5 +23,12 @@ aws iam create-user --cli-input-json '{
   "PermissionsBoundary": "arn:aws:iam::aws:policy/AdministratorAccess"
 }'
 
-#get EC2 instances
+# Add access-key for user:
+aws iam create-access-key --user-name testuser7
+
+#####################
+EC2
+#####################
+
+# get EC2 instances
 aws ec2 describe-instances --query 'Reservations[*].Instances[*].{ID:InstanceId, Name:Tags[?Key==`Name`].Value | [0], Status:State.Name}' --output table
