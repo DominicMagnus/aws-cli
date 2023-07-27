@@ -1,0 +1,24 @@
+{
+  "variables": {
+    "aws_access_key": "YOUR_AWS_ACCESS_KEY", // Змінна для доступу до AWS API (замість YOUR_AWS_ACCESS_KEY вкажіть свої реальні дані)
+    "aws_secret_key": "YOUR_AWS_SECRET_KEY"  // Змінна для секретного ключа доступу до AWS API (замість YOUR_AWS_SECRET_KEY вкажіть свої реальні дані)
+  },
+  "builders": [
+    {
+      "type": "amazon-ebs", // Тип будівельника AMI для AWS EC2
+      "access_key": "{{user `aws_access_key`}}", // Звернення до змінної для доступу до AWS API
+      "secret_key": "{{user `aws_secret_key`}}", // Звернення до змінної для секретного ключа доступу до AWS API
+      "region": "us-west-1", // Регіон AWS, де створювати образ
+      "source_ami": "ami-sd3543ds", // ID базового AMI (образу), на основі якого буде створено новий образ
+      "instance_type": "t2.medium", // Тип інстансу EC2, який буде використовуватись для створення образу
+      "ssh_username": "ec2-user", // Користувач, який буде використовуватись для SSH доступу до інстансу
+      "ami_name": "packer-demo {{timestamp}}" // Ім'я нового образу AMI (за замовчуванням буде додано часовий штамп)
+    }
+  ],
+  "provisioners": [
+    {
+      "type": "shell", // Тип провіженера - shell (виконання команд у образі)
+      "script": "demo-script.sh" // Файл, який містить команди для виконання у образі (цей файл повинен бути доступний у тому ж каталозі, де знаходиться цей Packer скрипт)
+    }
+  ]
+}
