@@ -1,12 +1,16 @@
 ### Install depends
+## install linux subsystem
 dism.exe /online /enable-feature /featurename:Microsoft-Windows-Subsystem-Linux /all /norestart
 dism.exe /online /enable-feature /featurename:VirtualMachinePlatform /all /norestart
 
 DISM.exe /Online /Add-Capability /CapabilityName:OpenSSH.Client~~~~0.0.1.0
-DISM.exe /Online /Add-Capability /CapabilityName:OpenSSH.Server~~~~0.0.1.0
+DISM.exe /Online /Add-Capability /CapabilityName:OpenSSH.Server~~~~0.0.1.0 ## optional
 
-Create Key pair on EC2 page
-download it
+## go to the OpenSSH Authentication Agent service - Run and enable it
+
+
+## Create Key pair on EC2 page
+download it 
 
 Convert PEM Key to OpenSSH Format (Optional):
 If your PEM key is not in OpenSSH format (the one that Windows typically uses), you might need to convert it. OpenSSH requires the private key to be in a specific format. You can use tools like PuTTYgen or the ssh-keygen command on Linux or macOS to perform the conversion.
